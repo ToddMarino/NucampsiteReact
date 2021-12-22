@@ -30,7 +30,7 @@ function RenderComments({comments}) {
                     </p>
                     </div>
                     );
-                })};
+                })}
                 </div>
         );
     } 
