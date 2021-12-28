@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 function RenderPartner({ partner }) {
-   if(partner) {
+   if(partner) { // check if partner is truthy. Only need parenthses since deconstructed already.
     return (
         <React.Fragment>
         <Media object={true} src={partner.image} alt={partner.name} width="150"/>
@@ -28,7 +28,8 @@ function About(props) {
     const partners = props.partners.map(partner => {
         return (
             <Media tag="li" key={partner.id}>
-                <RenderPartner partner={partner} />
+                \ // pass in partner object as partner
+                <RenderPartner partner={partner} /> 
             </Media>
         );
     });
