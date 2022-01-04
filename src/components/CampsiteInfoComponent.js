@@ -21,7 +21,7 @@ class CommentForm extends Component {
         touched: {
             rating: false,
             author: false,
-            comment: false
+            text: false
         }
     };
     this.toggleModal = this.toggleModal.bind(this);
@@ -35,6 +35,7 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
+        this.toggleModal();
         console.log("Current state is: " + JSON.stringify(values));
         alert("Current state is: " + JSON.stringify(values));
     }
