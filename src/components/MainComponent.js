@@ -46,7 +46,7 @@ class Main extends Component {
         const CampsiteWithId = ({match}) => {
             return (
                 <CampsiteInfo 
-                campsite={this.props.campsites.filter(campsite => campsite.id === 
+                campsite={this.props.campsites.campsites.filter(campsite => campsite.id === 
                 +match.params.campsiteId)[0]}
                 isLoading={this.props.campsites.isLoading}
                 errMess={this.props.campsites.errMess}
