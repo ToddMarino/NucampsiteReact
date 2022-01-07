@@ -9,12 +9,11 @@ const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 const isNumber = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%=-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-{/*  
-regex looks first to see the name only contains a-z, 0-9, or allowed special characters
-next checks for @ symbol
-next checks the domain name . domain extension
-finally runs js built in method(test)
-*/}
+
+// regex looks first to see the name only contains a-z, 0-9, or allowed special characters
+// next checks for @ symbol
+// next checks the domain name . domain extension
+// finally runs js built in method(test)
 
 class Contact extends Component {
 
