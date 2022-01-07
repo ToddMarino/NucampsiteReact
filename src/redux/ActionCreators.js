@@ -18,10 +18,25 @@ export const fetchCampsites = () => dispatch => {
 
     // ****** call to fetch and return the result. fetch needs a url which is what baseUrl set up and then campsites data. 
     return fetch(baseUrl + 'campsites')
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+    )
         // ****** call to fetch returns a Promise. use ".then" to chain response to take the returned JSON data and convert to javascript: array of campsites.
         .then(response => response.json())
         // ****** array of campsites is then dispatched with the addcampsites action creator to be used as its payload.
         .then(campsites => dispatch(addCampsites(campsites)))
+        .catch(error => dispatch(campsitesFailed(error.message)))
 };
 
 export const campsitesLoading = () => ({
@@ -40,8 +55,23 @@ export const addCampsites = campsites => ({
 
 export const fetchComments = () => dispatch => {
     return fetch(baseUrl + 'comments')
-    .then(response => response.json())
-    .then(comments => dispatch(addComments(comments)))
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
+        .then(response => response.json())
+        .then(comments => dispatch(addComments(comments)))
+        .catch(error => dispatch(commentsFailed(error.message)))
 }
 
 export const commentsFailed = errMess => ({
@@ -57,12 +87,24 @@ export const addComments = comments => ({
 export const fetchPromotions = () => dispatch => {
     dispatch(promotionsLoading());
 
-    // ****** call to fetch and return the result. fetch needs a url which is what baseUrl set up and then Promotions data. 
     return fetch(baseUrl + 'promotions')
-        // ****** call to fetch returns a Promise. use ".then" to chain response to take the returned JSON data and convert to javascript: array of Promotions.
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
+    },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+    )
         .then(response => response.json())
-        // ****** array of Promotions is then dispatched with the addPromotions action creator to be used as its payload.
         .then(promotions => dispatch(addPromotions(promotions)))
+        .catch(error => dispatch(promotionsFailed(error.message)))
 };
 
 export const promotionsLoading = () => ({
