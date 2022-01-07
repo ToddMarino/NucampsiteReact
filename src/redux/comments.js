@@ -9,8 +9,6 @@ export const Comments = (state = { errMess: null, comments: []}, action) => {
             return {...state, errMess: action.payload}
         case ActionTypes.ADD_COMMENT:
             const comment = action.payload;
-            comment.id = state.comments.length;
-            comment.date = new Date().toISOString();
             // concat(comment) takes state, makes a copy and concatinates the new comment and returns new state to Redux store
             return {...state, comments: state.comments.concat(comment)}
         default: 
