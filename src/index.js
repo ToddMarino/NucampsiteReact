@@ -8,7 +8,6 @@ import 'bootstrap-social/bootstrap-social.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { TransitionGroup, CSSTransition} from 'react-transition-group'
 
 ReactDOM.render(
   <React.StrictMode>
