@@ -152,3 +152,44 @@ export const addPromotions = promotions => ({
     type: ActionTypes.ADD_PROMOTIONS,
     payload: promotions
 })
+
+export const addPartners = partners => ({
+    type: ActionTypes.ADD_PARTNERS,
+    payload: partners
+})
+
+export const partnersLoading = () => ({
+    type: ActionTypes.PARTNERS_LOADING
+})
+
+export const partnersFailed = errMess => ({
+    type: ActionTypes.PARTNERS_FAILED,
+    payload: errMess
+})
+
+
+export const fetchPartners = () => dispatch => {
+    dispatch(partnersLoading());
+
+    // ****** call to fetch and return the result. fetch needs a url which is what baseUrl set up and then campsites data. 
+    return fetch(baseUrl + 'partners')
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+    )
+        // ****** call to fetch returns a Promise. use ".then" to chain response to take the returned JSON data and convert to javascript: array of campsites.
+        .then(response => response.json())
+        // ****** array of campsites is then dispatched with the addcampsites action creator to be used as its payload.
+        .then(partners => dispatch(addPartners(partners)))
+        .catch(error => dispatch(partnersFailed(error.message)))
+};
