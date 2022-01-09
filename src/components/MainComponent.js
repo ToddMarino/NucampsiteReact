@@ -86,7 +86,7 @@ class Main extends Component {
                                 <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                                 <Route exact path='/aboutus' render={() => <About partners={this.props.partners}/>} />
                                 <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
-                                <Route exact path='/contactus' render={() => <Contact postFeedbackForm={this.props.postFeebackForm} />} />
+                                <Route exact path='/contactus' render={() => <Contact postFeedback={this.props.postFeedback} />} />
                                 <Redirect to='/home'/>
                             </Switch>
                         </CSSTransition>

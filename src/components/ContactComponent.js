@@ -39,13 +39,13 @@ class Contact extends Component {
             this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
+// ********************** WEEK 5 TASK 2 ********************** 
     handleSubmit(values) {
        this.props.postFeedback(values);
+       this.props.resetFeedbackForm();
     }
 
     render() {
-
 
         return (
             <div className="container">
