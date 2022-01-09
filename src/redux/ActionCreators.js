@@ -211,9 +211,7 @@ export const postFeedback = (firstname, lastname, phoneNum, email, agree, contac
     })
     .then(response => {
         if (response.ok) {
-            return (
-                alert(`Thank you for your feedback!  ${newFeedback}`)
-            )
+            alert("Thank you for your feedback!"+ JSON.stringify(newFeedback))
         }
     }
     )
