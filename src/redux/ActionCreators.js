@@ -191,30 +191,35 @@ export const fetchPartners = () => dispatch => {
         .catch(error => dispatch(partnersFailed(error.message)))
 };
 
-export const postFeedback = (firstName, lastName, phoneNum, email, agree, contactType, feedback) => {
-    const newFeedback = {
-        firstName, 
-        lastName, 
-        phoneNum, 
-        email, 
-        agree, 
-        contactType, 
-        feedback
-    };
+export const postFeedback = (feedback) => () => {
 
     return fetch(baseUrl + 'feedback', {
         method: 'POST', 
-        body: JSON.stringify(newFeedback),
+        body: JSON.stringify(feedback),
         headers: {
             "Content-Type": "application/json"
-        }
+        }, 
     })
     .then(response => {
-        if (response.ok) {
-            alert("Thank you for your feedback!"+ JSON.stringify(newFeedback))
+        if(response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+            }
+        },
+        (error) => {
+            const errMess = new Error(error.message);
+            throw errMess;
         }
-    }
     )
-    .then(response => response.json())
+        .then((response) => response.json())
+        .then((response) => {
+            alert("Thank you for your feedback" + JSON.stringify(response))
+        })
+        .catch((error) => {
+            console.log("Feedback: ", error.message)
+        })
 }
 

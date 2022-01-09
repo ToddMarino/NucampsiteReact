@@ -33,8 +33,8 @@ class Contact extends Component {
                     lastName: false,
                     phoneNum: false,
                     email: false
-                }
-            };
+                },
+            }
 
             this.handleSubmit = this.handleSubmit.bind(this);
     }
