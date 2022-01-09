@@ -191,10 +191,10 @@ export const fetchPartners = () => dispatch => {
         .catch(error => dispatch(partnersFailed(error.message)))
 };
 
-export const postFeedback = (firstname, lastname, phoneNum, email, agree, contactType, feedback) => {
+export const postFeedback = (firstName, lastName, phoneNum, email, agree, contactType, feedback) => {
     const newFeedback = {
-        firstname, 
-        lastname, 
+        firstName, 
+        lastName, 
         phoneNum, 
         email, 
         agree, 
@@ -204,7 +204,7 @@ export const postFeedback = (firstname, lastname, phoneNum, email, agree, contac
 
     return fetch(baseUrl + 'feedback', {
         method: 'POST', 
-        body: JSON.stringify(feedback),
+        body: JSON.stringify(newFeedback),
         headers: {
             "Content-Type": "application/json"
         }
